@@ -1,13 +1,14 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <string.h>
 #include "menu.h"
 #include "funkcje.h"
 
 void usage(const char* program_name)
 {
     printf_s("\nSposob uzycia: %s <liczba> <dzialanie(add/sub/mul/div)> <liczba>\n", program_name);
-    printf_s("Lub\n %s \"menu\" \n", program_name);
+    printf_s("Lub\n%s menu \n", program_name);
     exit(1);
 }
 
@@ -53,28 +54,39 @@ int main(int argc, char const* argv[])
     }
     else if (argc == 4)
     {
-        char dzialanie = *argv[2];
-        printf("jestem tu");
-        switch (dzialanie)
+        if (!strcmp(argv[2], "add"))
         {
-        case 'add':
             printf("\nSuma tych liczb wynosi %d.\n", add(atoi(argv[1]), atoi(argv[3])));
-            break;
-        case 'sub':
-            printf("\nSuma tych liczb wynosi %d.\n", substract(atoi(argv[1]), atoi(argv[3])));
-            break;
-        case 'mul':
-            printf("\nSuma tych liczb wynosi %d.\n", multiplie(atoi(argv[1]), atoi(argv[3])));
-            break;
-        case 'div':
-            printf("\nSuma tych liczb wynosi %f.\n", divide(atoi(argv[1]), atoi(argv[3])));
-            break;
+                exit(0);
         }
-        /*if (dzialanie == "add") printf("\nSuma tych liczb wynosi %f.\n", add(atof(argv[1]), atof(argv[3])));
-        if (dzialanie == 'sub') printf("\nSuma tych liczb wynosi %f.\n", substract(atof(argv[1]), atof(argv[3])));
-        if (dzialanie == 'mul') printf("\nSuma tych liczb wynosi %f.\n", multiplie(atof(argv[1]), atof(argv[3])));
-        if (dzialanie == 'div') printf("\nSuma tych liczb wynosi %f.\n", divide(atof(argv[1]), atof(argv[3])));
-        else printf_s("Ups... cos poszlo nie tak, sprawdz poprawnosc wpisanych parametrow");*/
+        if (!strcmp(argv[2], "sub"))
+        {
+            printf("\nRoznica tych liczb wynosi %d.\n", substract(atoi(argv[1]), atoi(argv[3])));
+                exit(0);
+        }
+        if (!strcmp(argv[2], "mul"))
+        {
+            printf("\nIloczyn tych liczb wynosi %d.\n", multiplie(atoi(argv[1]), atoi(argv[3])));
+            exit(0);
+        }
+        if (!strcmp(argv[2], "div"))
+        {
+            if (atoi(argv[3]) != 0)
+            {
+                printf("\nIloraz tych liczb wynosi %f.\n", divide(atoi(argv[1]), atoi(argv[3])));
+                exit(0);
+            }
+            else
+            {
+                printf("\nNie mozna dzielic przez 0!\n");
+                exit(2);
+            }
+        }
+        else
+        {
+            printf_s("Ups... cos poszlo nie tak, sprawdz poprawnosc wpisanych parametrow");
+            exit(1);    
+        }
         return 0;
     }
     else usage(argv[0]);
