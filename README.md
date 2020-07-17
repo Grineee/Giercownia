@@ -1,3 +1,3 @@
 # Giercownia
 
-just simple application to play classic games in console
+prosta aplikacja do grania w klasyczne gry w konsoli 
