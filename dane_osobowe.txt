@@ -1,6 +1,0 @@
-imię: Wiktor
-nazwisko: Zielonka
-numer albumu: 232255
-e-mail: 232255@edu.p.lodz.pl
-tryb studiów: niestacjonarne
-grupa: AiSR 2L3
